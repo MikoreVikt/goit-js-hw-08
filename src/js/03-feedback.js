@@ -22,10 +22,15 @@ function onInputEvt(evt) {
 
 function onSumbitEvt(evt) {
   evt.preventDefault();
-  evt.target.email.value = ``;
-  evt.target.message.value = ``;
-  console.log(JSON.parse(localStorage.getItem(STORAGE_KEY)));
-  localStorage.removeItem(STORAGE_KEY);
+  if (dataRef.email && dataRef.message) {
+    console.log(JSON.parse(localStorage.getItem(STORAGE_KEY)));
+    dataRef.email = ``;
+    dataRef.message = ``;
+    evt.currentTarget.reset();
+    localStorage.removeItem(STORAGE_KEY);
+  } else {
+    return alert('Пожалуйста заполните все поля!');
+  }
 }
 
 function returnSavedCurrentData() {
