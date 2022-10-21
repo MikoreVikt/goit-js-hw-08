@@ -29,9 +29,11 @@ function onSumbitEvt(evt) {
 }
 
 function returnSavedCurrentData() {
-  const saveCurrentData = JSON.parse(localStorage.getItem(STORAGE_KEY));
-  if (saveCurrentData) {
-    formRef[0].value = saveCurrentData.email;
-    formRef[1].value = saveCurrentData.message;
+  const savedCurrentData = JSON.parse(localStorage.getItem(STORAGE_KEY));
+  if (savedCurrentData) {
+    formRef[0].value = savedCurrentData.email ? savedCurrentData.email : '';
+    formRef[1].value = savedCurrentData.message ? savedCurrentData.message : '';
+    dataRef.email = savedCurrentData.email;
+    dataRef.message = savedCurrentData.message;
   }
 }
